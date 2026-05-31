@@ -1,0 +1,23 @@
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: mood_db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: mooddb
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  backend:
+    build: ./backend
+    container_name: mood_backend
+    restart: always
+    ports:
+      - "3000:3000"
+    depends_on:
+      - db
+    command: sh -c "sleep 20 && npm start"
