@@ -1,2 +1,2 @@
-# -xpense-tracker-docker
+# -Expense-tracker-docker
 Задание: Контейнеризация на проект с Docker Compose
